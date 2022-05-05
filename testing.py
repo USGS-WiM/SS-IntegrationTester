@@ -195,8 +195,6 @@ for server in servers:
                                 print(e)
                                 break
 
-
-
                     if numberBasinCharacteristicsNotEqualToKnownValues == 0:
                         printOut("Completed. All computed values were equal to known values.")
                     elif numberBasinCharacteristicsNotEqualToKnownValues == 1:
@@ -212,8 +210,6 @@ for server in servers:
             else:
                 printOut("Failed 10 times. Moving on to the next region.")
                 basinCharateristicsSuccess = False
-
-
 
     serverEndTime = datetime.now()
     serverTimeElapsed = serverEndTime - serverStartTime
