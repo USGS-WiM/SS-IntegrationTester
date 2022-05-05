@@ -1,5 +1,3 @@
-
-
 # Print out text string to console and to ConsoleOutput.txt
 def printOut(text):
     print(text)
@@ -119,6 +117,8 @@ for server in servers:
             printOut("BASIN CHARACTERISTICS:")
             printOut("Running...")
 
+
+
             for attempt in range(10):
                 try:
                     basinCharacteristicsStartTime = datetime.now()
@@ -143,6 +143,10 @@ for server in servers:
 
                     printOut("COMPARING BASIN CHARACTERISTICS TO KNOWN VALUES:")
                     printOut("Running...")
+
+                    # Create a file where basin characteristics comparison will be saved
+                    fileName = os.path.join(basinCharacteristicsDirectory, "BasinCharacteristicsComparison.csv")
+                    basinCharacteristicsComparisonFile = open(fileName, "w")
 
                     # Make dictionary of known basin characteristics values
                     knownBasinCharacteristicsDictionary = {}
