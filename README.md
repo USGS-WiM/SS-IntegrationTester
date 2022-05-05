@@ -110,6 +110,14 @@ SS-IntegrationTester
                 AL.txt
                 ...
 ```
+Explanation of files in Testing-YYYY-MM-DD-HH-MM-SS folder:
+- ConsoleOutput.txt: copy of the console output
+- [server]/BasinDelineations/[region].txt: contains the full service response for basin delineation for that test site
+- [server]/BasinCharacteristics/[region].txt: contains the full service response for basin characteristics for that test site
+- [server]/FlowStatistics/[region].txt: contains the full service response for flow statistics for that test site
+- [server]/BasinCharacteristics/BasinCharacteristicsOutput.csv: contains basin characteristics (computed and known values) for all test sites
+- [server]/BasinCharacteristics/BasinCharacteristicsDifferences.csv: contains computed basin characteristics that were not equal to known values
+- [server]/BasinCharacteristics/BasinCharacteristicsUncompared.csv: contains computed basin characteristics that were not compared to known values because a known value was not available
 
 ## Development Workflow
 
