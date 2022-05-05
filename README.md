@@ -1,7 +1,7 @@
 ![WiM](wim.png)
 
 
-# Project Title
+# StreamStats Integration Tester
 
 One Paragraph of project description goes here
 
@@ -10,7 +10,7 @@ One Paragraph of project description goes here
 What things you need to install the software and how to install them
 
 ```
-Give examples
+Python 3
 ```
 
 ## Getting Started
