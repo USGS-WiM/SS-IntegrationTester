@@ -33,7 +33,9 @@ fileName = os.path.join(dateDirectory, "ConsoleOutput.txt")
 consoleOutputFile = open(fileName, "w")
 
 # Load the test sites from GitHub
-with urllib.request.urlopen("https://raw.githubusercontent.com/USGS-WiM/StreamStats-Setup/master/batchTester/testSites.geojson") as url:
+testSitesURL = 'https://raw.githubusercontent.com/USGS-WiM/StreamStats-Setup/master/batchTester/testSites.geojson'
+fakeTestSitesURL = 'https://raw.githubusercontent.com/USGS-WiM/StreamStats-Setup/testAM/batchTester/testSites.geojson'
+with urllib.request.urlopen(fakeTestSitesURL) as url:
     sites = json.loads(url.read().decode())['features']
 
 servers = ["test", "prodweba", "prodwebb"]
