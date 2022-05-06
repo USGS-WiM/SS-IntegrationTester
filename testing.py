@@ -5,7 +5,6 @@ def printOut(text):
     consoleOutputFile.write(text + "\n")
     consoleOutputFile.flush()
 
-import urllib.request
 import json
 import csv
 from datetime import datetime
@@ -190,7 +189,7 @@ for server in servers:
                                 basinCharacteristicsComparisonFileWriter.writerow(dataRow)
                                 basinCharacteristicsComparisonFile.flush()
                             except Exception as e:
-                                print(e)
+                                # print(e)
                                 break
 
                     if numberBasinCharacteristicsNotEqualToKnownValues == 0:
