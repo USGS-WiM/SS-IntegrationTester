@@ -166,9 +166,6 @@ for server in servers:
                     knownBasinCharacteristics = site['properties']['testData']
                     for knownBasinCharacteristic in knownBasinCharacteristics:
                         knownBasinCharacteristicsDictionary[knownBasinCharacteristic["Label"]] = knownBasinCharacteristic["Value"]
-                    
-                    # Set up a fake basin characteristic value for AL for testing purposes
-                    knownBasinCharacteristicsDictionary["L3_PIEDMNT"] = 50
 
                     numberBasinCharacteristicsNotEqualToKnownValues = 0
                     for parameter in parameters:
