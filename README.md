@@ -53,62 +53,62 @@ SS-IntegrationTester
         └───TEST
         │   │   
         │   └───BasinDelineations
-        │   │   AK.txt
-        │   │   AL.txt
-        │   │   ...
+        │   │      AK.txt
+        │   │      AL.txt
+        │   │      ...
         │   │   
         │   └───BasinCharacteristics
-        │   │   BasinCharacteristicsOutput.csv
-        │   │   BasinCharacteristicsDifferences.csv
-        │   │   BasinCharacteristicsUncompared.csv
-        │   │   AK.txt
-        │   │   AL.txt
-        │   │   ...
+        │   │      BasinCharacteristicsOutput.csv
+        │   │      BasinCharacteristicsDifferences.csv
+        │   │      BasinCharacteristicsUncompared.csv
+        │   │      AK.txt
+        │   │      AL.txt
+        │   │      ...
         │   │   
         │   └───FlowStatistics
-        │       AK.txt
-        │       AL.txt
-        │       ...
+        │          AK.txt
+        │          AL.txt
+        │          ...
         │   
         └───PRODWEBA
         │   │   
         │   └───BasinDelineations
-        │   │   AK.txt
-        │   │   AL.txt
-        │   │   ...
+        │   │      AK.txt
+        │   │      AL.txt
+        │   │      ...
         │   │   
         │   └───BasinCharacteristics
-        │   │   BasinCharacteristicsOutput.csv
-        │   │   BasinCharacteristicsDifferences.csv
-        │   │   BasinCharacteristicsUncompared.csv
-        │   │   AK.txt
-        │   │   AL.txt
-        │   │   ...
+        │   │      BasinCharacteristicsOutput.csv
+        │   │      BasinCharacteristicsDifferences.csv
+        │   │      BasinCharacteristicsUncompared.csv
+        │   │      AK.txt
+        │   │      AL.txt
+        │   │      ...
         │   │   
         │   └───FlowStatistics
-        │       AK.txt
-        │       AL.txt
-        │       ...
+        │          AK.txt
+        │          AL.txt
+        │          ...
         │   
         └───PRODWEBB
             │   
             └───BasinDelineations
-            │   AK.txt
-            │   AL.txt
-            │   ...
+            │      AK.txt
+            │      AL.txt
+            │      ...
             │   
             └───BasinCharacteristics
-            │   BasinCharacteristicsOutput.csv
-            │   BasinCharacteristicsDifferences.csv
-            │   BasinCharacteristicsUncompared.csv
-            │   AK.txt
-            │   AL.txt
-            │   ...
+            │      BasinCharacteristicsOutput.csv
+            │      BasinCharacteristicsDifferences.csv
+            │      BasinCharacteristicsUncompared.csv
+            │      AK.txt
+            │      AL.txt
+            │      ...
             │   
             └───FlowStatistics
-                AK.txt
-                AL.txt
-                ...
+                   AK.txt
+                   AL.txt
+                   ...
 ```
 Explanation of files in Testing-YYYY-MM-DD-HH-MM-SS folder:
 - ConsoleOutput.txt: copy of the console output
