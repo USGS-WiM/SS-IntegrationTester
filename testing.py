@@ -31,6 +31,14 @@ if not os.path.exists(dateDirectory):
 fileName = os.path.join(dateDirectory, "ConsoleOutput.txt")
 consoleOutputFile = open(fileName, "w")
 
+# Create a file where time elapsed will be saved
+fileName = os.path.join(dateDirectory, "TimeElapsed.csv")
+timeElapsedFile = open(fileName, "w", newline='')
+timeElapsedFileWriter = csv.writer(timeElapsedFile)
+headerRow = ["Entity", "Identifier", "Time elapsed (HH:MM:SS)"]
+timeElapsedFileWriter.writerow(headerRow)
+timeElapsedFile.flush()
+
 # Load the test sites from local files
 testSites = open('testSites.geojson')
 fakeTestSites = open('fakeTestSites.geojson')
@@ -61,6 +69,7 @@ for server in servers:
         basinCharacteristicsComparisonFileWriter = csv.writer(basinCharacteristicsComparisonFile)
         headerRow = ["Region", "SiteID", "WorkspaceID", "Latitude", "Longitude", "Basin Characteristic", "Computed value", "Known value", "Computed Value Equal to Known Value?"]
         basinCharacteristicsComparisonFileWriter.writerow(headerRow)
+        basinCharacteristicsComparisonFile.flush()
 
         # Create a file where computed basin characteristics that are different from known values will be saved
         fileName = os.path.join(basinCharacteristicsDirectory, "BasinCharacteristicsDifferences.csv")
@@ -68,6 +77,7 @@ for server in servers:
         basinCharacteristicsDifferenceFileWriter = csv.writer(basinCharacteristicsDifferenceFile)
         headerRow = ["Region", "SiteID", "WorkspaceID", "Latitude", "Longitude", "Basin Characteristic", "Computed value", "Known value"]
         basinCharacteristicsDifferenceFileWriter.writerow(headerRow)
+        basinCharacteristicsDifferenceFile.flush()
 
         # Create a file where computed basin characteristics that were not compared to known values will be saved
         fileName = os.path.join(basinCharacteristicsDirectory, "BasinCharacteristicsUncompared.csv")
@@ -75,6 +85,7 @@ for server in servers:
         basinCharacteristicsUncomparedFileWriter = csv.writer(basinCharacteristicsUncomparedFile)
         headerRow = ["Region", "SiteID", "WorkspaceID", "Latitude", "Longitude", "Basin Characteristic", "Computed value"]
         basinCharacteristicsUncomparedFileWriter.writerow(headerRow)
+        basinCharacteristicsUncomparedFile.flush()
 
         # Create a folder for Flow Statistics results: Output/Testing-YYYY-MM-DD-HH-MM-SS/[server]/FlowStatistics
         flowStatsDirectory = os.path.join(serverFolderDirectory, r'FlowStatistics')
