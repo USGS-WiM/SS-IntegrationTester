@@ -5,6 +5,7 @@ def printOut(text):
     consoleOutputFile.write(text + "\n")
     consoleOutputFile.flush()
 
+from fileinput import filename
 import json
 import csv
 from datetime import datetime
@@ -35,7 +36,7 @@ consoleOutputFile = open(fileName, "w")
 fileName = os.path.join(dateDirectory, "TimeElapsed.csv")
 timeElapsedFile = open(fileName, "w", newline='')
 timeElapsedFileWriter = csv.writer(timeElapsedFile)
-headerRow = ["Entity", "Identifier", "Time elapsed (HH:MM:SS)"]
+headerRow = ["Testing session", "Server", "Region", "SiteID", "Task", "Time elapsed"]
 timeElapsedFileWriter.writerow(headerRow)
 timeElapsedFile.flush()
 
@@ -44,7 +45,7 @@ testSites = open('testSites.geojson')
 fakeTestSites = open('fakeTestSites.geojson')
 sites = json.load(fakeTestSites)['features']
 
-servers = ["test", "prodweba", "prodwebb"]
+servers = ["prodweba", "prodwebb"]
 resultsFolders = ["BasinDelineations", "BasinCharacteristics", "FlowStatistics"]
 
 for server in servers:
@@ -97,6 +98,9 @@ for server in servers:
     printOut("========== PERFORMING TESTS ON " + server.upper() + " SERVER ==========")
 
     for site in sites:
+
+        
+        siteStartTime = datetime.now()
         
         coordinates = site['geometry']['coordinates']
         xlocation = coordinates[0]
@@ -128,11 +132,14 @@ for server in servers:
 
                 basinDelineationEndTime = datetime.now()
                 basinDelineationTimeElapsed = basinDelineationEndTime - basinDelineationStartTime
-                printOut("Completed successfully.") 
-                printOut("Time elapsed: " + str(basinDelineationTimeElapsed)) 
+                printOut("Completed successfully. Time elapsed: " + str(basinDelineationTimeElapsed)) 
+                dataRow = [folderName, server.upper(), region, siteID, "Basin Delineation", basinDelineationTimeElapsed]
+                timeElapsedFileWriter.writerow(dataRow)
+                timeElapsedFile.flush()
+
             except Exception as e:
                 printOut("Failed. Retrying...")
-                # printOut(e)
+                print(e)
             else:
                 break
         else:
@@ -164,8 +171,10 @@ for server in servers:
 
                     basinCharacteristicsEndTime = datetime.now()
                     basinCharacteristicsTimeElapsed = basinCharacteristicsEndTime - basinCharacteristicsStartTime
-                    printOut("Completed successfully.")
-                    printOut("Time elapsed: " + str(basinCharacteristicsTimeElapsed))
+                    printOut("Completed successfully. Time elapsed: " + str(basinCharacteristicsTimeElapsed)) 
+                    dataRow = [folderName, server.upper(), region, siteID, "Basin Characteristics", basinCharacteristicsTimeElapsed]
+                    timeElapsedFileWriter.writerow(dataRow)
+                    timeElapsedFile.flush()
 
                     printOut("COMPARING BASIN CHARACTERISTICS TO KNOWN VALUES:")
                     printOut("Running...")
@@ -212,21 +221,34 @@ for server in servers:
 
                 except Exception as e:
                     printOut("Failed. Retrying...")
-                    # printOut(e)
+                    # print(e)
                 else:
                     break
             else:
                 printOut("Failed 10 times. Moving on to the next region.")
                 basinCharateristicsSuccess = False
+        
+        siteEndTime = datetime.now()
+        siteTimeElapsed = siteEndTime - siteStartTime
+        dataRow = [folderName, server.upper(), region, siteID, "", siteTimeElapsed]
+        timeElapsedFileWriter.writerow(dataRow)
+        timeElapsedFile.flush()
 
     serverEndTime = datetime.now()
     serverTimeElapsed = serverEndTime - serverStartTime
     printOut(server.upper() + " server finished testing! Elapsed time for this server: " + str(serverTimeElapsed)) 
+    dataRow = [folderName, server.upper(), "", "", "", serverTimeElapsed]
+    timeElapsedFileWriter.writerow(dataRow)
+    timeElapsedFile.flush()
 
 overallEndTime = datetime.now()
 overallTimeElapsed = overallEndTime - overallStartTime
 printOut("Testing complete! Overall elapsed time: " + str(overallTimeElapsed))
+dataRow = [folderName, "", "", "", "", overallTimeElapsed]
+timeElapsedFileWriter.writerow(dataRow)
+timeElapsedFile.flush()
 consoleOutputFile.close()
+timeElapsedFile.close()
 basinCharacteristicsComparisonFile.close()
 basinCharacteristicsDifferenceFile.close()
 basinCharacteristicsUncomparedFile.close()
