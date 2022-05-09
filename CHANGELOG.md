@@ -9,13 +9,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Update ReadMe
 - Create file structure for output files
 - Import test sites
 - Perform basin delineations
 - Compute basin characteristics
 - Compare computed basin characteristics to known values
 - Save console output to text file
-- Update ReadMe
+- Save basin characteristics output to CSV files
 
 ### Changed
 
