@@ -37,7 +37,7 @@ consoleOutputFile = open(fileName, "w")
 fileName = os.path.join(dateDirectory, "TimeElapsed.csv")
 timeElapsedFile = open(fileName, "w", newline='')
 timeElapsedFileWriter = csv.writer(timeElapsedFile)
-headerRow = ["Testing session", "Server", "Region", "SiteID", "Task", "Time elapsed"]
+headerRow = ["Testing session", "Server", "Region", "SiteID", "WorkspaceID", "Task", "Time elapsed"]
 timeElapsedFileWriter.writerow(headerRow)
 timeElapsedFile.flush()
 
@@ -120,11 +120,11 @@ for server in servers:
             basinCharateristicsSuccess = True
             flowStatisticsSuccess = True
 
-            printOut("*** " + region + " ***")
+            printOut("\t*** " + region + " ***")
 
             # BASIN DELINEATION
-            printOut("BASIN DELINEATION:")
-            printOut("Running...")
+            printOut("\t\tBASIN DELINEATION:")
+            printOut("\t\t\tRunning...")
 
             for attempt in range(10):
                 try:
@@ -148,7 +148,7 @@ for server in servers:
 
                 except Exception as e:
                     printOut("Failed. Retrying...")
-                    print(e)
+                    # print(e)
                 else:
                     break
             else:
