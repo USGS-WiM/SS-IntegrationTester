@@ -96,9 +96,9 @@ for server in servers:
             basinCharacteristicsUncomparedFile.flush()
 
             # Create a folder for Flow Statistics results: Output/Testing-YYYY-MM-DD-HH-MM-SS/[server]/FlowStatistics
-            flowStatsDirectory = os.path.join(serverFolderDirectory, r'FlowStatistics')
-            if not os.path.exists(flowStatsDirectory):
-                os.makedirs(flowStatsDirectory)
+            flowStatisticsDirectory = os.path.join(serverFolderDirectory, r'FlowStatistics')
+            if not os.path.exists(flowStatisticsDirectory):
+                os.makedirs(flowStatisticsDirectory)
 
         serverStartTime = datetime.now()
 
@@ -117,6 +117,8 @@ for server in servers:
             region = properties['state']
             testData = properties['testData']
             basinDelineationSuccess = True
+            basinCharateristicsSuccess = True
+            flowStatisticsSuccess = True
 
             printOut("*** " + region + " ***")
 
@@ -140,7 +142,7 @@ for server in servers:
                     basinDelineationEndTime = datetime.now()
                     basinDelineationTimeElapsed = basinDelineationEndTime - basinDelineationStartTime
                     printOut("Completed successfully. Time elapsed: " + str(basinDelineationTimeElapsed)) 
-                    dataRow = [folderName, server.upper(), region, siteID, "Basin Delineation", basinDelineationTimeElapsed]
+                    dataRow = [folderName, server.upper(), region, siteID, workspaceID, "Basin Delineation", basinDelineationTimeElapsed]
                     timeElapsedFileWriter.writerow(dataRow)
                     timeElapsedFile.flush()
 
@@ -150,7 +152,7 @@ for server in servers:
                 else:
                     break
             else:
-                printOut("Failed 10 times. Moving on to the next region.")
+                printOut("Failed 10 times. Moving on to the next site.")
                 basinDelineationSuccess = False
             
             # BASIN CHARACTERISTICS
@@ -179,7 +181,7 @@ for server in servers:
                         basinCharacteristicsEndTime = datetime.now()
                         basinCharacteristicsTimeElapsed = basinCharacteristicsEndTime - basinCharacteristicsStartTime
                         printOut("Completed successfully. Time elapsed: " + str(basinCharacteristicsTimeElapsed)) 
-                        dataRow = [folderName, server.upper(), region, siteID, "Basin Characteristics", basinCharacteristicsTimeElapsed]
+                        dataRow = [folderName, server.upper(), region, siteID, workspaceID, "Basin Characteristics", basinCharacteristicsTimeElapsed]
                         timeElapsedFileWriter.writerow(dataRow)
                         timeElapsedFile.flush()
 
@@ -232,14 +234,14 @@ for server in servers:
                     else:
                         break
                 else:
-                    printOut("Failed 10 times. Moving on to the next region.")
+                    printOut("Failed 10 times. Moving on to the next site.")
                     basinCharateristicsSuccess = False
 
                 # FLOW STATISTICS
                 
                 if (basinCharateristicsSuccess):
                     
-                    printOut("FLOW STATISTICS::")
+                    printOut("FLOW STATISTICS:")
                     printOut("Running...")
 
                     for attempt in range(10):
@@ -248,25 +250,43 @@ for server in servers:
                             flowStatisticsStartTime = datetime.now()
                             computeFlowStatisticsString = "https://{}.streamstats.usgs.gov/streamstatsservices/flowstatistics.json?rcode={}&workspaceID={}&includeflowtypes=true".format(server, region, workspaceID)
                             response = requests.get(computeFlowStatisticsString)
-                            parameters = json.loads(response.content)['parameters']
+                            regressionRegions = json.loads(response.content)[0]['RegressionRegions']
 
                             # Check to make sure that values were actually returned from the service
                             if 'value' not in parameters[0]:
                                 raise Exception
-                        
+
+                            siteFlowStatisticsFileName = os.path.join(flowStatisticsDirectory, region + ".txt")
+                            siteFlowStatisticsFile = open(siteFlowStatisticsFileName, "w")
+                            siteFlowStatisticsFile.write(json.dumps(json.loads(response.content)))
+                            siteFlowStatisticsFile.close()
+
+                            
+                            flowStatisticsEndTime = datetime.now()
+                            flowStatisticsTimeElapsed = flowStatisticsEndTime - flowStatisticsStartTime
+                            printOut("Completed successfully. Time elapsed: " + str(flowStatisticsTimeElapsed)) 
+                            dataRow = [folderName, server.upper(), region, siteID, workspaceID, "FlowStatistics", flowStatisticsTimeElapsed]
+                            timeElapsedFileWriter.writerow(dataRow)
+                            timeElapsedFile.flush()
+                            
                         except Exception as e:
-                            printOut("Failed. Retrying...")
-                            # print(e)
+                            if (response.status_code == 500):
+                                printOut("Flow Statistics not available for this site. Moving on to the next site.")
+                                flowStatisticsSuccess = False
+                                break
+                            else:
+                                printOut("Failed. Retrying...")
+                                # print(e)
                         else:
                             break
                     else: 
-                        printOut("Failed 10 times. Moving on to the next region.")
+                        printOut("Failed 10 times. Moving on to the next site.")
                         flowStatisticsSuccess = False
 
             
             siteEndTime = datetime.now()
             siteTimeElapsed = siteEndTime - siteStartTime
-            dataRow = [folderName, server.upper(), region, siteID, "", siteTimeElapsed]
+            dataRow = [folderName, server.upper(), region, siteID, workspaceID, "", siteTimeElapsed]
             timeElapsedFileWriter.writerow(dataRow)
             timeElapsedFile.flush()
 
@@ -277,7 +297,8 @@ for server in servers:
         timeElapsedFileWriter.writerow(dataRow)
         timeElapsedFile.flush()
 
-    except:
+    except Exception as e:
+        # print(e)
         print(server.upper() + " server is down. Moving on to next server.")
     
 
