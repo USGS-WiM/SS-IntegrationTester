@@ -293,7 +293,7 @@ for server in servers:
         serverEndTime = datetime.now()
         serverTimeElapsed = serverEndTime - serverStartTime
         printOut(server.upper() + " server finished testing! Elapsed time for this server: " + str(serverTimeElapsed)) 
-        dataRow = [folderName, server.upper(), "", "", "", serverTimeElapsed]
+        dataRow = [folderName, server.upper(), "", "", "", "", serverTimeElapsed]
         timeElapsedFileWriter.writerow(dataRow)
         timeElapsedFile.flush()
 
@@ -305,7 +305,7 @@ for server in servers:
 overallEndTime = datetime.now()
 overallTimeElapsed = overallEndTime - overallStartTime
 printOut("Testing complete! Overall elapsed time: " + str(overallTimeElapsed))
-dataRow = [folderName, "", "", "", "", overallTimeElapsed]
+dataRow = [folderName, "", "", "", "", "", overallTimeElapsed]
 timeElapsedFileWriter.writerow(dataRow)
 timeElapsedFile.flush()
 consoleOutputFile.close()
