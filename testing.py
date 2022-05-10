@@ -120,11 +120,11 @@ for server in servers:
             basinCharateristicsSuccess = True
             flowStatisticsSuccess = True
 
-            printOut("\t*** " + region + " ***")
+            printOut("*** " + region + " ***")
 
             # BASIN DELINEATION
-            printOut("\t\tBASIN DELINEATION:")
-            printOut("\t\t\tRunning...")
+            printOut("BASIN DELINEATION:")
+            printOut("Running...")
 
             for attempt in range(10):
                 try:
