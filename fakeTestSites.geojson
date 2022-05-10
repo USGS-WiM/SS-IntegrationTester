@@ -6,114 +6,6 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -90.1183,
-                    44.48291
-                ]
-            },
-            "properties": {
-                "siteid": "05401800",
-                "state": "WI",
-                "testData": [
-                    {
-                        "Label": "CLIFAC100Y",
-                        "Value": 2.7
-                    },
-                    {
-                        "Label": "CLIFAC25Y",
-                        "Value": 2.5
-                    },
-                    {
-                        "Label": "CLIMFAC2YR",
-                        "Value": 1.8
-                    },
-                    {
-                        "Label": "CSL10_85",
-                        "Value": 21.4
-                    },
-                    {
-                        "Label": "DEVNLCD01",
-                        "Value": 4.62
-                    },
-                    {
-                        "Label": "DRNAREA",
-                        "Value": 7.01
-                    },
-                    {
-                        "Label": "FOREST",
-                        "Value": 36.73
-                    },
-                    {
-                        "Label": "I24H100Y",
-                        "Value": 6.15
-                    },
-                    {
-                        "Label": "I24H10Y",
-                        "Value": 3.933
-                    },
-                    {
-                        "Label": "I24H25Y",
-                        "Value": 4.6
-                    },
-                    {
-                        "Label": "I24H2Y",
-                        "Value": 2.7
-                    },
-                    {
-                        "Label": "I24H50Y",
-                        "Value": 5.298
-                    },
-                    {
-                        "Label": "I24H5Y",
-                        "Value": 3.4
-                    },
-                    {
-                        "Label": "LC01CRPHAY",
-                        "Value": 57.45
-                    },
-                    {
-                        "Label": "LC01HERB",
-                        "Value": 0.09
-                    },
-                    {
-                        "Label": "LC01WATER",
-                        "Value": 0.1
-                    },
-                    {
-                        "Label": "LC11EMWET",
-                        "Value": 0.25
-                    },
-                    {
-                        "Label": "LC11WDWET",
-                        "Value": 0.35
-                    },
-                    {
-                        "Label": "PRECIP",
-                        "Value": 32.423
-                    },
-                    {
-                        "Label": "SNOFALL",
-                        "Value": 46.085
-                    },
-                    {
-                        "Label": "SOILPERM",
-                        "Value": 9.114
-                    },
-                    {
-                        "Label": "WETLAND",
-                        "Value": 0.6
-                    },
-                    {
-                        "Label": "SSURGOKSAT",
-                        "Value": 9.114
-                    }
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
                     -87.48516,
                     33.52127
                 ]
@@ -474,145 +366,105 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -92.87265,
-                    35.32482
+                    -90.1183,
+                    44.48291
                 ]
             },
             "properties": {
-                "siteid": "07260673",
-                "state": "AR",
+                "siteid": "05401800",
+                "state": "WI",
                 "testData": [
                     {
-                        "Label": "BSHAPE",
-                        "Value": 0.24
+                        "Label": "CLIFAC100Y",
+                        "Value": 2.7
+                    },
+                    {
+                        "Label": "CLIFAC25Y",
+                        "Value": 2.5
+                    },
+                    {
+                        "Label": "CLIMFAC2YR",
+                        "Value": 1.8
                     },
                     {
                         "Label": "CSL10_85",
-                        "Value": 20.593
+                        "Value": 21.4
+                    },
+                    {
+                        "Label": "DEVNLCD01",
+                        "Value": 4.62
                     },
                     {
                         "Label": "DRNAREA",
-                        "Value": 222
+                        "Value": 7.01
                     },
                     {
-                        "Label": "ELEV",
-                        "Value": 751
+                        "Label": "FOREST",
+                        "Value": 36.73
                     },
                     {
-                        "Label": "HIGHREG",
-                        "Value": 1715.0
+                        "Label": "I24H100Y",
+                        "Value": 6.15
                     },
                     {
-                        "Label": "LC11DEV",
-                        "Value": 4.08
+                        "Label": "I24H10Y",
+                        "Value": 3.933
                     },
                     {
-                        "Label": "LC11IMP",
-                        "Value": 0.49
+                        "Label": "I24H25Y",
+                        "Value": 4.6
                     },
                     {
-                        "Label": "LFPLENGTH",
-                        "Value": 35.98
+                        "Label": "I24H2Y",
+                        "Value": 2.7
                     },
                     {
-                        "Label": "LOWREG",
-                        "Value": 1439
+                        "Label": "I24H50Y",
+                        "Value": 5.298
                     },
                     {
-                        "Label": "MARAVPRE",
-                        "Value": 5.04
+                        "Label": "I24H5Y",
+                        "Value": 3.4
                     },
                     {
-                        "Label": "NOVAVPRE",
-                        "Value": 4.49
+                        "Label": "LC01CRPHAY",
+                        "Value": 57.45
                     },
                     {
-                        "Label": "ORDOMISS",
-                        "Value": 0
+                        "Label": "LC01HERB",
+                        "Value": 0.09
+                    },
+                    {
+                        "Label": "LC01WATER",
+                        "Value": 0.1
+                    },
+                    {
+                        "Label": "LC11EMWET",
+                        "Value": 0.25
+                    },
+                    {
+                        "Label": "LC11WDWET",
+                        "Value": 0.35
                     },
                     {
                         "Label": "PRECIP",
-                        "Value": 49.8
+                        "Value": 32.423
                     },
                     {
-                        "Label": "PREMARAPR",
-                        "Value": 9.32
+                        "Label": "SNOFALL",
+                        "Value": 46.085
                     },
                     {
-                        "Label": "PRENOVDEC",
-                        "Value": 8.89
+                        "Label": "SOILPERM",
+                        "Value": 9.114
                     },
                     {
-                        "Label": "PRNOVAPR00",
-                        "Value": 25.9
+                        "Label": "WETLAND",
+                        "Value": 0.6
                     },
                     {
-                        "Label": "PRNOVAPR90",
-                        "Value": 24.5
-                    },
-                    {
-                        "Label": "PZNSSREGNO",
-                        "Value": 1446
-                    },
-                    {
-                        "Label": "SOILINDEX",
-                        "Value": 2.75
-                    },
-                    {
-                        "Label": "TAU_ANN_G",
-                        "Value": 10
-                    },
-                    {
-                        "Label": "TAU_SPR_G",
-                        "Value": 12
-                    },
-                    {
-                        "Label": "TAU_WIN_G",
-                        "Value": 10
-                    },
-                    {
-                        "Label": "ALVM",
-                        "Value": 0.0
-                    },
-                    {
-                        "Label": "BFI",
-                        "Value": 0.24
-                    },
-                    {
-                        "Label": "BSHAPELFP",
-                        "Value": 5.842
-                    },
-                    {
-                        "Label": "CSL1085ADJ",
-                        "Value": 20.593
-                    },
-                    {
-                        "Label": "CSL1085LFP",
-                        "Value": 19.2
-                    },
-                    {
-                        "Label": "CSL1085RAW",
-                        "Value": 19.2
-                    },
-                    {
-                        "Label": "CSLBlue",
-                        "Value": 46.2
-                    },
-                    {
-                        "Label": "LC11DVOPN",
-                        "Value": 3.15
-                    },
-                    {
-                        "Label": "LC11PAST",
-                        "Value": 19.6
-                    },
-                    {
-                        "Label": "TRUN0711",
-                        "Value": 3.83
-                    },
-                    {
-                        "Label": "UPZ",
-                        "Value": 100.0
+                        "Label": "SSURGOKSAT",
+                        "Value": 9.114
                     }
                 ]
             }
