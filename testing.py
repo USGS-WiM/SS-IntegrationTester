@@ -42,8 +42,8 @@ timeElapsedFileWriter.writerow(headerRow)
 timeElapsedFile.flush()
 
 # Load the test sites from local files
-testSites = open('testSites.geojson')
-fakeTestSites = open('fakeTestSites.geojson')
+testSites = open('testSites.geojson') # Real test sites file
+fakeTestSites = open('fakeTestSites.geojson') # Fake test sites file used for testing purposes
 sites = json.load(fakeTestSites)['features']
 
 servers = ["test", "prodweba", "prodwebb"]
@@ -234,6 +234,35 @@ for server in servers:
                 else:
                     printOut("Failed 10 times. Moving on to the next region.")
                     basinCharateristicsSuccess = False
+
+                # FLOW STATISTICS
+                
+                if (basinCharateristicsSuccess):
+                    
+                    printOut("FLOW STATISTICS::")
+                    printOut("Running...")
+
+                    for attempt in range(10):
+                        try:
+                            
+                            flowStatisticsStartTime = datetime.now()
+                            computeFlowStatisticsString = "https://{}.streamstats.usgs.gov/streamstatsservices/flowstatistics.json?rcode={}&workspaceID={}&includeflowtypes=true".format(server, region, workspaceID)
+                            response = requests.get(computeFlowStatisticsString)
+                            parameters = json.loads(response.content)['parameters']
+
+                            # Check to make sure that values were actually returned from the service
+                            if 'value' not in parameters[0]:
+                                raise Exception
+                        
+                        except Exception as e:
+                            printOut("Failed. Retrying...")
+                            # print(e)
+                        else:
+                            break
+                    else: 
+                        printOut("Failed 10 times. Moving on to the next region.")
+                        flowStatisticsSuccess = False
+
             
             siteEndTime = datetime.now()
             siteTimeElapsed = siteEndTime - siteStartTime
