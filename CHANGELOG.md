@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Compare computed basin characteristics to known values
 - Save console output to text file
 - Save basin characteristics output to CSV files
+- Add test sites files
 
 ### Changed
 

@@ -5,7 +5,6 @@ def printOut(text):
     consoleOutputFile.write(text + "\n")
     consoleOutputFile.flush()
 
-import urllib.request
 import json
 import csv
 from datetime import datetime
@@ -32,11 +31,10 @@ if not os.path.exists(dateDirectory):
 fileName = os.path.join(dateDirectory, "ConsoleOutput.txt")
 consoleOutputFile = open(fileName, "w")
 
-# Load the test sites from GitHub
-testSitesURL = 'https://raw.githubusercontent.com/USGS-WiM/StreamStats-Setup/master/batchTester/testSites.geojson'
-fakeTestSitesURL = 'https://raw.githubusercontent.com/USGS-WiM/StreamStats-Setup/testAM/batchTester/testSites.geojson'
-with urllib.request.urlopen(fakeTestSitesURL) as url:
-    sites = json.loads(url.read().decode())['features']
+# Load the test sites from local files
+testSites = open('testSites.geojson')
+fakeTestSites = open('fakeTestSites.geojson')
+sites = json.load(fakeTestSites)['features']
 
 servers = ["test", "prodweba", "prodwebb"]
 resultsFolders = ["BasinDelineations", "BasinCharacteristics", "FlowStatistics"]
@@ -191,7 +189,7 @@ for server in servers:
                                 basinCharacteristicsComparisonFileWriter.writerow(dataRow)
                                 basinCharacteristicsComparisonFile.flush()
                             except Exception as e:
-                                print(e)
+                                # print(e)
                                 break
 
                     if numberBasinCharacteristicsNotEqualToKnownValues == 0:
