@@ -307,7 +307,7 @@ if not os.path.exists(comparisonDirectory):
     os.makedirs(comparisonDirectory)
 
 # Create a summary file to summarize differences 
-fileName = os.path.join(comparisonDirectory, "ComparisonSummary.csv")
+fileName = os.path.join(comparisonDirectory, "DifferencesSummary.csv")
 comparisonSummaryFile = open(fileName, "w", newline='')
 comparisonSummaryFileWriter = csv.writer(comparisonSummaryFile)
 headerRow = ["Testing session", "Server 1", "Server 2", "Region", "SiteID", "Task", "Description", "Server 1 Value", "Server 2 Value"]
