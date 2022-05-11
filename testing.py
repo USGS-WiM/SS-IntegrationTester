@@ -388,7 +388,7 @@ for productionServer in productionServers:
             comparisonTestProdFile.flush()
         elif (testBasinDelineationsFileNotFound is True and prodBasinDelineationsFileNotFound is True):
             printOut("Basin Delineations are equal.")
-            dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinDelineation", "", "File not found", "File not found", str(True)]
+            dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinDelineation", "", "File not found", "File not found"]
             comparisonTestProdUncomparedFileWriter.writerow(dataRow)
             comparisonTestProdUncomparedFile.flush()
         else:
@@ -441,7 +441,7 @@ for productionServer in productionServers:
             else:
                 printOut("All Basin Characteristics are equal.")
         elif (testBasinCharacteristicsFileNotFound is True and prodBasinCharacteristicsFileNotFound is True):
-            dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinCharacteristics", "", "File not found", "File not found", str(True)]
+            dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinCharacteristics", "", "File not found", "File not found"]
             comparisonTestProdUncomparedFileWriter.writerow(dataRow)
             comparisonTestProdUncomparedFile.flush()
         else:
@@ -494,7 +494,7 @@ for productionServer in productionServers:
                             dataRow = [folderName, "TEST", productionServer, region, siteID, "FlowStatistics", prodResult["code"], str(testDictionary[prodStatisticGroup['StatisticGroupID']][prodRegressionRegion['Code']][prodResult["code"]]), str(prodResult["Value"])]
                             comparisonTestProdDifferencesFileWriter.writerow(dataRow)
                             comparisonTestProdDifferencesFile.flush()
-                        dataRow = [folderName, "TEST", productionServer, region, siteID, "FlowStatistics", prodResult["code"], str(testDictionary[prodStatisticGroup['StatisticGroupID']][prodRegressionRegion['Code']][prodResult["code"]]), str(prodResult["Value"]), str(testDictionary[prodStatisticGroup['StatisticGroupID']][prodRegressionRegion['Code']][prodResult["code"]] != prodResult["Value"])]
+                        dataRow = [folderName, "TEST", productionServer, region, siteID, "FlowStatistics", prodResult["code"], str(testDictionary[prodStatisticGroup['StatisticGroupID']][prodRegressionRegion['Code']][prodResult["code"]]), str(prodResult["Value"]), str(testDictionary[prodStatisticGroup['StatisticGroupID']][prodRegressionRegion['Code']][prodResult["code"]] == prodResult["Value"])]
                         comparisonTestProdFileWriter.writerow(dataRow)
                         comparisonTestProdFile.flush()
             if numberFlowStatisticsNotEqual > 0:
@@ -503,7 +503,7 @@ for productionServer in productionServers:
                 printOut("All Flow Statistics are equal.")
         elif (testFlowStatisticsFileNotFound is True and prodFlowStatisticsFileNotFound is True):
             printOut("Flow Statistics are equal.")
-            dataRow = [folderName, "TEST", productionServer, region, siteID, "FlowStatistics", "", "File not found", "File not found", str(True)]
+            dataRow = [folderName, "TEST", productionServer, region, siteID, "FlowStatistics", "", "File not found", "File not found"]
             comparisonTestProdUncomparedFileWriter.writerow(dataRow)
             comparisonTestProdUncomparedFile.flush()
         else:
