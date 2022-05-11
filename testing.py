@@ -24,7 +24,7 @@ if not os.path.exists(outputDirectory):
 
 # Create a folder for this test: Output/Testing-YYYY-MM-DD-HH-MM-SS
 folderName = "Testing-" + overallStartTime.strftime("%Y-%m-%d-%H-%M-%S")
-# folderName = "Testing-2022-05-10-11-13-45"
+folderName = "Testing-2022-05-11-17-22-06"
 dateDirectory = os.path.join(outputDirectory, folderName)
 if not os.path.exists(dateDirectory):
     os.makedirs(dateDirectory)
@@ -50,254 +50,254 @@ sites = json.load(fakeTestSites)['features']
 servers = ["test", "prodweba", "prodwebb"]
 resultsFolders = ["BasinDelineations", "BasinCharacteristics", "FlowStatistics"]
 
-for server in servers:
+# for server in servers:
 
-    # Check the connection and skip if server is down 
-    try:
-        serverString = "https://{}.streamstats.usgs.gov/ss".format(server)
-        urllib.request.urlopen(serverString).getcode()
+#     # Check the connection and skip if server is down 
+#     try:
+#         serverString = "https://{}.streamstats.usgs.gov/ss".format(server)
+#         urllib.request.urlopen(serverString).getcode()
 
-        # Create a folder for server results: Output/Testing-YYYY-MM-DD-HH-MM-SS/[TEST, PRODWEBA, or PRODWEBB]
-        serverFolderDirectory = os.path.join(dateDirectory, server.upper())
-        if not os.path.exists(serverFolderDirectory):
-            os.makedirs(serverFolderDirectory)
-        for resultsFolder in resultsFolders:
-            # Create a folder for Basin Delineation results: Output/Testing-YYYY-MM-DD-HH-MM-SS/[server]/BasinDelineations
-            delineationDirectory = os.path.join(serverFolderDirectory, r'BasinDelineations')
-            if not os.path.exists(delineationDirectory):
-                os.makedirs(delineationDirectory)
+#         # Create a folder for server results: Output/Testing-YYYY-MM-DD-HH-MM-SS/[TEST, PRODWEBA, or PRODWEBB]
+#         serverFolderDirectory = os.path.join(dateDirectory, server.upper())
+#         if not os.path.exists(serverFolderDirectory):
+#             os.makedirs(serverFolderDirectory)
+#         for resultsFolder in resultsFolders:
+#             # Create a folder for Basin Delineation results: Output/Testing-YYYY-MM-DD-HH-MM-SS/[server]/BasinDelineations
+#             delineationDirectory = os.path.join(serverFolderDirectory, r'BasinDelineations')
+#             if not os.path.exists(delineationDirectory):
+#                 os.makedirs(delineationDirectory)
 
-            # Create a folder for Basin Characteristics results: Output/Testing-YYYY-MM-DD-HH-MM-SS/[server]/BasinCharacteristics
-            basinCharacteristicsDirectory = os.path.join(serverFolderDirectory, r'BasinCharacteristics')
-            if not os.path.exists(basinCharacteristicsDirectory):
-                os.makedirs(basinCharacteristicsDirectory)
+#             # Create a folder for Basin Characteristics results: Output/Testing-YYYY-MM-DD-HH-MM-SS/[server]/BasinCharacteristics
+#             basinCharacteristicsDirectory = os.path.join(serverFolderDirectory, r'BasinCharacteristics')
+#             if not os.path.exists(basinCharacteristicsDirectory):
+#                 os.makedirs(basinCharacteristicsDirectory)
 
-            # Create a file where basin characteristics comparison will be saved
-            fileName = os.path.join(basinCharacteristicsDirectory, "BasinCharacteristicsComparison.csv")
-            basinCharacteristicsComparisonFile = open(fileName, "w", newline='')
-            basinCharacteristicsComparisonFileWriter = csv.writer(basinCharacteristicsComparisonFile)
-            headerRow = ["Region", "SiteID", "WorkspaceID", "Latitude", "Longitude", "Basin Characteristic", "Computed value", "Known value", "Computed Value Equal to Known Value?"]
-            basinCharacteristicsComparisonFileWriter.writerow(headerRow)
-            basinCharacteristicsComparisonFile.flush()
+#             # Create a file where basin characteristics comparison will be saved
+#             fileName = os.path.join(basinCharacteristicsDirectory, "BasinCharacteristicsComparison.csv")
+#             basinCharacteristicsComparisonFile = open(fileName, "w", newline='')
+#             basinCharacteristicsComparisonFileWriter = csv.writer(basinCharacteristicsComparisonFile)
+#             headerRow = ["Region", "SiteID", "WorkspaceID", "Latitude", "Longitude", "Basin Characteristic", "Computed value", "Known value", "Computed Value Equal to Known Value?"]
+#             basinCharacteristicsComparisonFileWriter.writerow(headerRow)
+#             basinCharacteristicsComparisonFile.flush()
 
-            # Create a file where computed basin characteristics that are different from known values will be saved
-            fileName = os.path.join(basinCharacteristicsDirectory, "BasinCharacteristicsDifferences.csv")
-            basinCharacteristicsDifferenceFile = open(fileName, "w", newline='')
-            basinCharacteristicsDifferenceFileWriter = csv.writer(basinCharacteristicsDifferenceFile)
-            headerRow = ["Region", "SiteID", "WorkspaceID", "Latitude", "Longitude", "Basin Characteristic", "Computed value", "Known value"]
-            basinCharacteristicsDifferenceFileWriter.writerow(headerRow)
-            basinCharacteristicsDifferenceFile.flush()
+#             # Create a file where computed basin characteristics that are different from known values will be saved
+#             fileName = os.path.join(basinCharacteristicsDirectory, "BasinCharacteristicsDifferences.csv")
+#             basinCharacteristicsDifferenceFile = open(fileName, "w", newline='')
+#             basinCharacteristicsDifferenceFileWriter = csv.writer(basinCharacteristicsDifferenceFile)
+#             headerRow = ["Region", "SiteID", "WorkspaceID", "Latitude", "Longitude", "Basin Characteristic", "Computed value", "Known value"]
+#             basinCharacteristicsDifferenceFileWriter.writerow(headerRow)
+#             basinCharacteristicsDifferenceFile.flush()
 
-            # Create a file where computed basin characteristics that were not compared to known values will be saved
-            fileName = os.path.join(basinCharacteristicsDirectory, "BasinCharacteristicsUncompared.csv")
-            basinCharacteristicsUncomparedFile = open(fileName, "w", newline='')
-            basinCharacteristicsUncomparedFileWriter = csv.writer(basinCharacteristicsUncomparedFile)
-            headerRow = ["Region", "SiteID", "WorkspaceID", "Latitude", "Longitude", "Basin Characteristic", "Computed value"]
-            basinCharacteristicsUncomparedFileWriter.writerow(headerRow)
-            basinCharacteristicsUncomparedFile.flush()
+#             # Create a file where computed basin characteristics that were not compared to known values will be saved
+#             fileName = os.path.join(basinCharacteristicsDirectory, "BasinCharacteristicsUncompared.csv")
+#             basinCharacteristicsUncomparedFile = open(fileName, "w", newline='')
+#             basinCharacteristicsUncomparedFileWriter = csv.writer(basinCharacteristicsUncomparedFile)
+#             headerRow = ["Region", "SiteID", "WorkspaceID", "Latitude", "Longitude", "Basin Characteristic", "Computed value"]
+#             basinCharacteristicsUncomparedFileWriter.writerow(headerRow)
+#             basinCharacteristicsUncomparedFile.flush()
 
-            # Create a folder for Flow Statistics results: Output/Testing-YYYY-MM-DD-HH-MM-SS/[server]/FlowStatistics
-            flowStatisticsDirectory = os.path.join(serverFolderDirectory, r'FlowStatistics')
-            if not os.path.exists(flowStatisticsDirectory):
-                os.makedirs(flowStatisticsDirectory)
+#             # Create a folder for Flow Statistics results: Output/Testing-YYYY-MM-DD-HH-MM-SS/[server]/FlowStatistics
+#             flowStatisticsDirectory = os.path.join(serverFolderDirectory, r'FlowStatistics')
+#             if not os.path.exists(flowStatisticsDirectory):
+#                 os.makedirs(flowStatisticsDirectory)
 
-        serverStartTime = datetime.now()
+#         serverStartTime = datetime.now()
 
-        printOut("========== PERFORMING TESTS ON " + server.upper() + " SERVER ==========")
+#         printOut("========== PERFORMING TESTS ON " + server.upper() + " SERVER ==========")
 
-        for site in sites:
+#         for site in sites:
 
-            siteStartTime = datetime.now()
+#             siteStartTime = datetime.now()
             
-            coordinates = site['geometry']['coordinates']
-            xlocation = coordinates[0]
-            ylocation = coordinates[1]
-            properties = site['properties']
-            siteID = properties['siteid']
-            region = properties['state']
-            testData = properties['testData']
-            basinDelineationSuccess = True
-            basinCharateristicsSuccess = True
-            flowStatisticsSuccess = True
+#             coordinates = site['geometry']['coordinates']
+#             xlocation = coordinates[0]
+#             ylocation = coordinates[1]
+#             properties = site['properties']
+#             siteID = properties['siteid']
+#             region = properties['state']
+#             testData = properties['testData']
+#             basinDelineationSuccess = True
+#             basinCharateristicsSuccess = True
+#             flowStatisticsSuccess = True
 
-            printOut("*** " + region + " ***")
+#             printOut("*** " + region + " ***")
 
-            # BASIN DELINEATION
-            printOut("BASIN DELINEATION:")
-            printOut("Running...")
+#             # BASIN DELINEATION
+#             printOut("BASIN DELINEATION:")
+#             printOut("Running...")
 
-            for attempt in range(10):
-                try:
-                    basinDelineationStartTime = datetime.now()
-                    delineateWatershedByLocationString = "https://{}.streamstats.usgs.gov/streamstatsservices/watershed.geojson?rcode={}&xlocation={}&ylocation={}&crs=4326&includeparameters=false&includeflowtypes=false&includefeatures=true&simplify=false".format(server, region, xlocation, ylocation)
-                    response = requests.get(delineateWatershedByLocationString)
-                    workspaceID = json.loads(response.content)['workspaceID']
-                    coordinates = json.loads(response.content)['featurecollection'][1]['feature']['features'][0]["geometry"]['coordinates']
+#             for attempt in range(10):
+#                 try:
+#                     basinDelineationStartTime = datetime.now()
+#                     delineateWatershedByLocationString = "https://{}.streamstats.usgs.gov/streamstatsservices/watershed.geojson?rcode={}&xlocation={}&ylocation={}&crs=4326&includeparameters=false&includeflowtypes=false&includefeatures=true&simplify=false".format(server, region, xlocation, ylocation)
+#                     response = requests.get(delineateWatershedByLocationString)
+#                     workspaceID = json.loads(response.content)['workspaceID']
+#                     coordinates = json.loads(response.content)['featurecollection'][1]['feature']['features'][0]["geometry"]['coordinates']
                     
-                    siteDelineationFileName = os.path.join(delineationDirectory, region + ".txt")
-                    siteDelineationFile = open(siteDelineationFileName, "w")
-                    siteDelineationFile.write(json.dumps(json.loads(response.content)))
-                    siteDelineationFile.close()
+#                     siteDelineationFileName = os.path.join(delineationDirectory, region + ".txt")
+#                     siteDelineationFile = open(siteDelineationFileName, "w")
+#                     siteDelineationFile.write(json.dumps(json.loads(response.content)))
+#                     siteDelineationFile.close()
 
-                    basinDelineationEndTime = datetime.now()
-                    basinDelineationTimeElapsed = basinDelineationEndTime - basinDelineationStartTime
-                    printOut("Completed successfully. Time elapsed: " + str(basinDelineationTimeElapsed)) 
-                    dataRow = [folderName, server.upper(), region, siteID, workspaceID, "Basin Delineation", basinDelineationTimeElapsed]
-                    timeElapsedFileWriter.writerow(dataRow)
-                    timeElapsedFile.flush()
+#                     basinDelineationEndTime = datetime.now()
+#                     basinDelineationTimeElapsed = basinDelineationEndTime - basinDelineationStartTime
+#                     printOut("Completed successfully. Time elapsed: " + str(basinDelineationTimeElapsed)) 
+#                     dataRow = [folderName, server.upper(), region, siteID, workspaceID, "Basin Delineation", basinDelineationTimeElapsed]
+#                     timeElapsedFileWriter.writerow(dataRow)
+#                     timeElapsedFile.flush()
 
-                except Exception as e:
-                    printOut("Failed. Retrying...")
-                    # print(e)
-                else:
-                    break
-            else:
-                printOut("Failed 10 times. Moving on to the next site.")
-                basinDelineationSuccess = False
+#                 except Exception as e:
+#                     printOut("Failed. Retrying...")
+#                     # print(e)
+#                 else:
+#                     break
+#             else:
+#                 printOut("Failed 10 times. Moving on to the next site.")
+#                 basinDelineationSuccess = False
             
-            # BASIN CHARACTERISTICS
+#             # BASIN CHARACTERISTICS
 
-            if basinDelineationSuccess:
+#             if basinDelineationSuccess:
                 
-                printOut("BASIN CHARACTERISTICS:")
-                printOut("Running...")
+#                 printOut("BASIN CHARACTERISTICS:")
+#                 printOut("Running...")
 
-                for attempt in range(10):
-                    try:
-                        basinCharacteristicsStartTime = datetime.now()
-                        computeBasinCharacteristicsString = "https://{}.streamstats.usgs.gov/streamstatsservices/parameters.json?rcode={}&workspaceID={}&includeparameters=true".format(server, region, workspaceID)
-                        response = requests.get(computeBasinCharacteristicsString)
-                        parameters = json.loads(response.content)['parameters']
+#                 for attempt in range(10):
+#                     try:
+#                         basinCharacteristicsStartTime = datetime.now()
+#                         computeBasinCharacteristicsString = "https://{}.streamstats.usgs.gov/streamstatsservices/parameters.json?rcode={}&workspaceID={}&includeparameters=true".format(server, region, workspaceID)
+#                         response = requests.get(computeBasinCharacteristicsString)
+#                         parameters = json.loads(response.content)['parameters']
 
-                        # Check to make sure that values were actually returned from the service
-                        if 'value' not in parameters[0]:
-                            raise Exception
+#                         # Check to make sure that values were actually returned from the service
+#                         if 'value' not in parameters[0]:
+#                             raise Exception
                         
-                        siteBasinCharcteristicsFileName = os.path.join(basinCharacteristicsDirectory, region + ".txt")
-                        siteBasinCharcteristicsFile = open(siteBasinCharcteristicsFileName, "w")
-                        siteBasinCharcteristicsFile.write(json.dumps(json.loads(response.content)))
-                        siteBasinCharcteristicsFile.close()
+#                         siteBasinCharcteristicsFileName = os.path.join(basinCharacteristicsDirectory, region + ".txt")
+#                         siteBasinCharcteristicsFile = open(siteBasinCharcteristicsFileName, "w")
+#                         siteBasinCharcteristicsFile.write(json.dumps(json.loads(response.content)))
+#                         siteBasinCharcteristicsFile.close()
 
-                        basinCharacteristicsEndTime = datetime.now()
-                        basinCharacteristicsTimeElapsed = basinCharacteristicsEndTime - basinCharacteristicsStartTime
-                        printOut("Completed successfully. Time elapsed: " + str(basinCharacteristicsTimeElapsed)) 
-                        dataRow = [folderName, server.upper(), region, siteID, workspaceID, "Basin Characteristics", basinCharacteristicsTimeElapsed]
-                        timeElapsedFileWriter.writerow(dataRow)
-                        timeElapsedFile.flush()
+#                         basinCharacteristicsEndTime = datetime.now()
+#                         basinCharacteristicsTimeElapsed = basinCharacteristicsEndTime - basinCharacteristicsStartTime
+#                         printOut("Completed successfully. Time elapsed: " + str(basinCharacteristicsTimeElapsed)) 
+#                         dataRow = [folderName, server.upper(), region, siteID, workspaceID, "Basin Characteristics", basinCharacteristicsTimeElapsed]
+#                         timeElapsedFileWriter.writerow(dataRow)
+#                         timeElapsedFile.flush()
 
-                        printOut("COMPARING BASIN CHARACTERISTICS TO KNOWN VALUES:")
-                        printOut("Running...")
+#                         printOut("COMPARING BASIN CHARACTERISTICS TO KNOWN VALUES:")
+#                         printOut("Running...")
 
-                        # Make dictionary of known basin characteristics values
-                        knownBasinCharacteristicsDictionary = {}
-                        knownBasinCharacteristics = site['properties']['testData']
-                        for knownBasinCharacteristic in knownBasinCharacteristics:
-                            knownBasinCharacteristicsDictionary[knownBasinCharacteristic["Label"]] = knownBasinCharacteristic["Value"]
+#                         # Make dictionary of known basin characteristics values
+#                         knownBasinCharacteristicsDictionary = {}
+#                         knownBasinCharacteristics = site['properties']['testData']
+#                         for knownBasinCharacteristic in knownBasinCharacteristics:
+#                             knownBasinCharacteristicsDictionary[knownBasinCharacteristic["Label"]] = knownBasinCharacteristic["Value"]
 
-                        numberBasinCharacteristicsNotEqualToKnownValues = 0
-                        for parameter in parameters:
-                            try:
-                                if knownBasinCharacteristicsDictionary[parameter['code']] != parameter['value']:
-                                    printOut("Basin characteristic not equal to known value: " + parameter['code'])
-                                    printOut("Known value = " + str(knownBasinCharacteristicsDictionary[parameter['code']]))
-                                    printOut("Computed value = " + str(parameter['value']))
-                                    numberBasinCharacteristicsNotEqualToKnownValues += 1
-                                    dataRow = [region, siteID, workspaceID, ylocation, xlocation, parameter['code'], parameter['value'], knownBasinCharacteristicsDictionary[parameter['code']]]
-                                    basinCharacteristicsDifferenceFileWriter.writerow(dataRow)
-                                    basinCharacteristicsDifferenceFile.flush()
-                                dataRow = [region, siteID, workspaceID, ylocation, xlocation, parameter['code'], parameter['value'], knownBasinCharacteristicsDictionary[parameter['code']], str(knownBasinCharacteristicsDictionary[parameter['code']] == parameter['value'])]
-                                basinCharacteristicsComparisonFileWriter.writerow(dataRow)
-                                basinCharacteristicsComparisonFile.flush()
-                            except Exception as e:
-                                try:
-                                    printOut("No known value for " + parameter['code'] + ". Computed value cannot be compared.")
-                                    dataRow = [region, siteID, workspaceID, ylocation, xlocation, parameter['code'], parameter['value']]
-                                    basinCharacteristicsUncomparedFileWriter.writerow(dataRow)
-                                    basinCharacteristicsUncomparedFile.flush()
-                                    dataRow = [region, siteID, workspaceID, ylocation, xlocation, parameter['code'], parameter['value'], "None", "Not applicable"]
-                                    basinCharacteristicsComparisonFileWriter.writerow(dataRow)
-                                    basinCharacteristicsComparisonFile.flush()
-                                except Exception as e:
-                                    # print(e)
-                                    break
+#                         numberBasinCharacteristicsNotEqualToKnownValues = 0
+#                         for parameter in parameters:
+#                             try:
+#                                 if knownBasinCharacteristicsDictionary[parameter['code']] != parameter['value']:
+#                                     printOut("Basin characteristic not equal to known value: " + parameter['code'])
+#                                     printOut("Known value = " + str(knownBasinCharacteristicsDictionary[parameter['code']]))
+#                                     printOut("Computed value = " + str(parameter['value']))
+#                                     numberBasinCharacteristicsNotEqualToKnownValues += 1
+#                                     dataRow = [region, siteID, workspaceID, ylocation, xlocation, parameter['code'], parameter['value'], knownBasinCharacteristicsDictionary[parameter['code']]]
+#                                     basinCharacteristicsDifferenceFileWriter.writerow(dataRow)
+#                                     basinCharacteristicsDifferenceFile.flush()
+#                                 dataRow = [region, siteID, workspaceID, ylocation, xlocation, parameter['code'], parameter['value'], knownBasinCharacteristicsDictionary[parameter['code']], str(knownBasinCharacteristicsDictionary[parameter['code']] == parameter['value'])]
+#                                 basinCharacteristicsComparisonFileWriter.writerow(dataRow)
+#                                 basinCharacteristicsComparisonFile.flush()
+#                             except Exception as e:
+#                                 try:
+#                                     printOut("No known value for " + parameter['code'] + ". Computed value cannot be compared.")
+#                                     dataRow = [region, siteID, workspaceID, ylocation, xlocation, parameter['code'], parameter['value']]
+#                                     basinCharacteristicsUncomparedFileWriter.writerow(dataRow)
+#                                     basinCharacteristicsUncomparedFile.flush()
+#                                     dataRow = [region, siteID, workspaceID, ylocation, xlocation, parameter['code'], parameter['value'], "None", "Not applicable"]
+#                                     basinCharacteristicsComparisonFileWriter.writerow(dataRow)
+#                                     basinCharacteristicsComparisonFile.flush()
+#                                 except Exception as e:
+#                                     # print(e)
+#                                     break
 
-                        if numberBasinCharacteristicsNotEqualToKnownValues == 0:
-                            printOut("Completed. All computed values were equal to known values.")
-                        else:
-                            printOut("Completed. Number of Basin Characteristics not equal to known values: " + str(numberBasinCharacteristicsNotEqualToKnownValues))
+#                         if numberBasinCharacteristicsNotEqualToKnownValues == 0:
+#                             printOut("Completed. All computed values were equal to known values.")
+#                         else:
+#                             printOut("Completed. Number of Basin Characteristics not equal to known values: " + str(numberBasinCharacteristicsNotEqualToKnownValues))
 
-                    except Exception as e:
-                        printOut("Failed. Retrying...")
-                        # print(e)
-                    else:
-                        break
-                else:
-                    printOut("Failed 10 times. Moving on to the next site.")
-                    basinCharateristicsSuccess = False
+#                     except Exception as e:
+#                         printOut("Failed. Retrying...")
+#                         # print(e)
+#                     else:
+#                         break
+#                 else:
+#                     printOut("Failed 10 times. Moving on to the next site.")
+#                     basinCharateristicsSuccess = False
 
-                # FLOW STATISTICS
+#                 # FLOW STATISTICS
                 
-                if (basinCharateristicsSuccess):
+#                 if (basinCharateristicsSuccess):
                     
-                    printOut("FLOW STATISTICS:")
-                    printOut("Running...")
+#                     printOut("FLOW STATISTICS:")
+#                     printOut("Running...")
 
-                    for attempt in range(10):
-                        try:
+#                     for attempt in range(10):
+#                         try:
                             
-                            flowStatisticsStartTime = datetime.now()
-                            computeFlowStatisticsString = "https://{}.streamstats.usgs.gov/streamstatsservices/flowstatistics.json?rcode={}&workspaceID={}&includeflowtypes=true".format(server, region, workspaceID)
-                            response = requests.get(computeFlowStatisticsString)
-                            regressionRegions = json.loads(response.content)[0]['RegressionRegions']
+#                             flowStatisticsStartTime = datetime.now()
+#                             computeFlowStatisticsString = "https://{}.streamstats.usgs.gov/streamstatsservices/flowstatistics.json?rcode={}&workspaceID={}&includeflowtypes=true".format(server, region, workspaceID)
+#                             response = requests.get(computeFlowStatisticsString)
+#                             regressionRegions = json.loads(response.content)[0]['RegressionRegions']
 
-                            # Check to make sure that values were actually returned from the service
-                            if 'value' not in parameters[0]:
-                                raise Exception
+#                             # Check to make sure that values were actually returned from the service
+#                             if 'value' not in parameters[0]:
+#                                 raise Exception
 
-                            siteFlowStatisticsFileName = os.path.join(flowStatisticsDirectory, region + ".txt")
-                            siteFlowStatisticsFile = open(siteFlowStatisticsFileName, "w")
-                            siteFlowStatisticsFile.write(json.dumps(json.loads(response.content)))
-                            siteFlowStatisticsFile.close()
+#                             siteFlowStatisticsFileName = os.path.join(flowStatisticsDirectory, region + ".txt")
+#                             siteFlowStatisticsFile = open(siteFlowStatisticsFileName, "w")
+#                             siteFlowStatisticsFile.write(json.dumps(json.loads(response.content)))
+#                             siteFlowStatisticsFile.close()
 
                             
-                            flowStatisticsEndTime = datetime.now()
-                            flowStatisticsTimeElapsed = flowStatisticsEndTime - flowStatisticsStartTime
-                            printOut("Completed successfully. Time elapsed: " + str(flowStatisticsTimeElapsed)) 
-                            dataRow = [folderName, server.upper(), region, siteID, workspaceID, "FlowStatistics", flowStatisticsTimeElapsed]
-                            timeElapsedFileWriter.writerow(dataRow)
-                            timeElapsedFile.flush()
+#                             flowStatisticsEndTime = datetime.now()
+#                             flowStatisticsTimeElapsed = flowStatisticsEndTime - flowStatisticsStartTime
+#                             printOut("Completed successfully. Time elapsed: " + str(flowStatisticsTimeElapsed)) 
+#                             dataRow = [folderName, server.upper(), region, siteID, workspaceID, "FlowStatistics", flowStatisticsTimeElapsed]
+#                             timeElapsedFileWriter.writerow(dataRow)
+#                             timeElapsedFile.flush()
                             
-                        except Exception as e:
-                            if (response.status_code == 500):
-                                printOut("Flow Statistics not available for this site. Moving on to the next site.")
-                                flowStatisticsSuccess = False
-                                break
-                            else:
-                                printOut("Failed. Retrying...")
-                                # print(e)
-                        else:
-                            break
-                    else: 
-                        printOut("Failed 10 times. Moving on to the next site.")
-                        flowStatisticsSuccess = False
+#                         except Exception as e:
+#                             if (response.status_code == 500):
+#                                 printOut("Flow Statistics not available for this site. Moving on to the next site.")
+#                                 flowStatisticsSuccess = False
+#                                 break
+#                             else:
+#                                 printOut("Failed. Retrying...")
+#                                 # print(e)
+#                         else:
+#                             break
+#                     else: 
+#                         printOut("Failed 10 times. Moving on to the next site.")
+#                         flowStatisticsSuccess = False
 
             
-            siteEndTime = datetime.now()
-            siteTimeElapsed = siteEndTime - siteStartTime
-            dataRow = [folderName, server.upper(), region, siteID, workspaceID, "", siteTimeElapsed]
-            timeElapsedFileWriter.writerow(dataRow)
-            timeElapsedFile.flush()
+#             siteEndTime = datetime.now()
+#             siteTimeElapsed = siteEndTime - siteStartTime
+#             dataRow = [folderName, server.upper(), region, siteID, workspaceID, "", siteTimeElapsed]
+#             timeElapsedFileWriter.writerow(dataRow)
+#             timeElapsedFile.flush()
 
-        serverEndTime = datetime.now()
-        serverTimeElapsed = serverEndTime - serverStartTime
-        printOut(server.upper() + " server finished testing! Elapsed time for this server: " + str(serverTimeElapsed)) 
-        dataRow = [folderName, server.upper(), "", "", "", "", serverTimeElapsed]
-        timeElapsedFileWriter.writerow(dataRow)
-        timeElapsedFile.flush()
+#         serverEndTime = datetime.now()
+#         serverTimeElapsed = serverEndTime - serverStartTime
+#         printOut(server.upper() + " server finished testing! Elapsed time for this server: " + str(serverTimeElapsed)) 
+#         dataRow = [folderName, server.upper(), "", "", "", "", serverTimeElapsed]
+#         timeElapsedFileWriter.writerow(dataRow)
+#         timeElapsedFile.flush()
 
-    except Exception as e:
-        # print(e)
-        print(server.upper() + " server is down. Moving on to next server.")
+#     except Exception as e:
+#         # print(e)
+#         print(server.upper() + " server is down. Moving on to next server.")
 
 ## Compare Test to ProdWebA and ProdWebB
 
@@ -305,6 +305,14 @@ for server in servers:
 comparisonDirectory = os.path.join(dateDirectory, "Comparison")
 if not os.path.exists(comparisonDirectory):
     os.makedirs(comparisonDirectory)
+
+# Create a summary file to summarize differences 
+fileName = os.path.join(comparisonDirectory, "ComparisonSummary.csv")
+comparisonSummaryFile = open(fileName, "w", newline='')
+comparisonSummaryFileWriter = csv.writer(comparisonSummaryFile)
+headerRow = ["Testing session", "Server 1", "Server 2", "Region", "SiteID", "Task", "Description", "Server 1 Value", "Server 2 Value"]
+comparisonSummaryFileWriter.writerow(headerRow)
+comparisonSummaryFile.flush()
 
 productionServers = ["PRODWEBA", "PRODWEBB"]
 
@@ -383,19 +391,26 @@ for productionServer in productionServers:
                 dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinDelineation", "", "See file", "See file"]
                 comparisonTestProdDifferencesFileWriter.writerow(dataRow)
                 comparisonTestProdDifferencesFile.flush()
+                comparisonSummaryFileWriter.writerow(dataRow)
+                comparisonSummaryFile.flush()
             dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinDelineation", "", "See file", "See file", str(testBasinDelineationCoordinates == prodBasinDelineationCoordinates)]
             comparisonTestProdFileWriter.writerow(dataRow)
             comparisonTestProdFile.flush()
         elif (testBasinDelineationsFileNotFound is True and prodBasinDelineationsFileNotFound is True):
             printOut("Basin Delineations are equal.")
-            dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinDelineation", "", "File not found", "File not found"]
-            comparisonTestProdUncomparedFileWriter.writerow(dataRow)
-            comparisonTestProdUncomparedFile.flush()
+            dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinDelineation", "", "See file", "See file", str(True)]
+            comparisonTestProdFileWriter.writerow(dataRow)
+            comparisonTestProdFile.flush()
         else:
             printOut("Basin Delineations available for only one server. Cannot compare.")
+            dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinDelineation", "", "File not found" if testBasinDelineationsFileNotFound else "See file", "File not found" if prodBasinDelineationsFileNotFound else "See file", "Not applicable"]
+            comparisonTestProdFileWriter.writerow(dataRow)
+            comparisonTestProdFile.flush()
             dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinDelineation", "", "File not found" if testBasinDelineationsFileNotFound else "See file", "File not found" if prodBasinDelineationsFileNotFound else "See file"]
             comparisonTestProdUncomparedFileWriter.writerow(dataRow)
             comparisonTestProdUncomparedFile.flush()
+            comparisonSummaryFileWriter.writerow(dataRow)
+            comparisonSummaryFile.flush()
 
         # Compare Basin Characteristics results
         printOut("BASIN CHARACTERISTICS:")
@@ -433,6 +448,8 @@ for productionServer in productionServers:
                     dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinCharacteristics", prodParameter['code'], str(testDictionary[prodParameter['code']]), str(prodParameter['value'])]
                     comparisonTestProdDifferencesFileWriter.writerow(dataRow)
                     comparisonTestProdDifferencesFile.flush()
+                    comparisonSummaryFileWriter.writerow(dataRow)
+                    comparisonSummaryFile.flush()
                 dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinCharacteristics", prodParameter['code'], str(testDictionary[prodParameter['code']]), str(prodParameter['value']), str(testDictionary[prodParameter['code']] == prodParameter['value'])]
                 comparisonTestProdFileWriter.writerow(dataRow)
                 comparisonTestProdFile.flush()
@@ -441,14 +458,17 @@ for productionServer in productionServers:
             else:
                 printOut("All Basin Characteristics are equal.")
         elif (testBasinCharacteristicsFileNotFound is True and prodBasinCharacteristicsFileNotFound is True):
+            printOut("All Basin Characteristics are equal.")
             dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinCharacteristics", "", "File not found", "File not found"]
-            comparisonTestProdUncomparedFileWriter.writerow(dataRow)
-            comparisonTestProdUncomparedFile.flush()
+            comparisonTestProdFileWriter.writerow(dataRow)
+            comparisonTestProdFile.flush()
         else:
             printOut("Basin Characteristics available for only one server. Cannot compare.")
             dataRow = [folderName, "TEST", productionServer, region, siteID, "BasinCharacteristics", "", "File not found" if testBasinCharacteristicsFileNotFound else "See file", "File not found" if prodBasinCharacteristicsFileNotFound else "See file"]
             comparisonTestProdUncomparedFileWriter.writerow(dataRow)
             comparisonTestProdUncomparedFile.flush()
+            comparisonSummaryFileWriter.writerow(dataRow)
+            comparisonSummaryFile.flush()
 
 
         # Compare Flow Statistics results
@@ -482,18 +502,17 @@ for productionServer in productionServers:
                     for testResult in testRegressionRegion["Results"]:
                         testDictionary[testStatisticGroup['StatisticGroupID']][testRegressionRegion['Code']][testResult["code"]] = testResult["Value"]
 
-            # print(testDictionary)
-
             prodStatisticGroups = json.load(prodFlowStatisticsFile)
             for prodStatisticGroup in prodStatisticGroups:
                 for prodRegressionRegion in prodStatisticGroup['RegressionRegions']:
                     for prodResult in prodRegressionRegion["Results"]:
                         if testDictionary[prodStatisticGroup['StatisticGroupID']][prodRegressionRegion['Code']][prodResult["code"]] != prodResult["Value"]:
-                            print("They aren't equal!!")
                             numberFlowStatisticsNotEqual += 1
                             dataRow = [folderName, "TEST", productionServer, region, siteID, "FlowStatistics", prodResult["code"], str(testDictionary[prodStatisticGroup['StatisticGroupID']][prodRegressionRegion['Code']][prodResult["code"]]), str(prodResult["Value"])]
                             comparisonTestProdDifferencesFileWriter.writerow(dataRow)
                             comparisonTestProdDifferencesFile.flush()
+                            comparisonSummaryFileWriter.writerow(dataRow)
+                            comparisonSummaryFile.flush()
                         dataRow = [folderName, "TEST", productionServer, region, siteID, "FlowStatistics", prodResult["code"], str(testDictionary[prodStatisticGroup['StatisticGroupID']][prodRegressionRegion['Code']][prodResult["code"]]), str(prodResult["Value"]), str(testDictionary[prodStatisticGroup['StatisticGroupID']][prodRegressionRegion['Code']][prodResult["code"]] == prodResult["Value"])]
                         comparisonTestProdFileWriter.writerow(dataRow)
                         comparisonTestProdFile.flush()
@@ -503,14 +522,16 @@ for productionServer in productionServers:
                 printOut("All Flow Statistics are equal.")
         elif (testFlowStatisticsFileNotFound is True and prodFlowStatisticsFileNotFound is True):
             printOut("Flow Statistics are equal.")
-            dataRow = [folderName, "TEST", productionServer, region, siteID, "FlowStatistics", "", "File not found", "File not found"]
-            comparisonTestProdUncomparedFileWriter.writerow(dataRow)
-            comparisonTestProdUncomparedFile.flush()
+            dataRow = [folderName, "TEST", productionServer, region, siteID, "FlowStatistics", "", "File not found", "File not found", str(True)]
+            comparisonTestProdFileWriter.writerow(dataRow)
+            comparisonTestProdFile.flush()
         else:
             printOut("Flow Statistics available for only one server. Cannot compare.")
             dataRow = [folderName, "TEST", productionServer, region, siteID, "FlowStatistics", "", "File not found" if testFlowStatisticsFileNotFound else "See file", "File not found" if prodFlowStatisticsFileNotFound else "See file"]
             comparisonTestProdUncomparedFileWriter.writerow(dataRow)
             comparisonTestProdUncomparedFile.flush()
+            comparisonSummaryFileWriter.writerow(dataRow)
+            comparisonSummaryFile.flush()
 
 overallEndTime = datetime.now()
 overallTimeElapsed = overallEndTime - overallStartTime
