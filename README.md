@@ -110,6 +110,7 @@ SS-IntegrationTester
         │          AL.txt
         │          ...
         └───Comparison
+            │   DifferencesSummary.csv
             │   
             └───Comparison-TEST-PRODWEBA
             │       Comparison-TEST-PRODWEBA.csv
@@ -130,6 +131,10 @@ Explanation of files in Testing-YYYY-MM-DD-HH-MM-SS folder:
 - [server]/BasinCharacteristics/BasinCharacteristicsOutput.csv: contains basin characteristics (computed and known values) for all test sites
 - [server]/BasinCharacteristics/BasinCharacteristicsDifferences.csv: contains computed basin characteristics that were not equal to known values
 - [server]/BasinCharacteristics/BasinCharacteristicsUncompared.csv: contains computed basin characteristics that were not compared to known values because a known value was not available
+- Comparison/DifferencesSummary.csv: contains the differences discovered when comparing TestWeb to ProdWebA and Test to ProdWebB
+- Comparison/Comparison-TEST-[server]/Comparison-TEST-[server].csv: contains all compared values for basin delineation, basin characteristics, and flow statistics between TestWeb and ProdWebA or ProdWebB
+- Comparison/Comparison-TEST-[server]/Comparison-TEST-[server]-Differences.csv: contains all values for basin delineation, basin characteristics, and flow statistics that were different between TestWeb and ProdWebA or ProdWebB
+- Comparison/Comparison-TEST-[server]/Comparison-TEST-[server]-Uncompared.csv: contains all values for basin delineation, basin characteristics, and flow statistics that were not able to be compared between TestWeb and ProdWebA or ProdWebB due to lack of data in one server
 
 ## Development Workflow
 
