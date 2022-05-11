@@ -91,25 +91,37 @@ SS-IntegrationTester
         │          ...
         │   
         └───PRODWEBB
+        │   │   
+        │   └───BasinDelineations
+        │   │      AK.txt
+        │   │      AL.txt
+        │   │      ...
+        │   │   
+        │   └───BasinCharacteristics
+        │   │      BasinCharacteristicsOutput.csv
+        │   │      BasinCharacteristicsDifferences.csv
+        │   │      BasinCharacteristicsUncompared.csv
+        │   │      AK.txt
+        │   │      AL.txt
+        │   │      ...
+        │   │   
+        │   └───FlowStatistics
+        │          AK.txt
+        │          AL.txt
+        │          ...
+        └───Comparison
             │   
-            └───BasinDelineations
-            │      AK.txt
-            │      AL.txt
-            │      ...
+            └───Comparison-TEST-PRODWEBA
+            │       Comparison-TEST-PRODWEBA.csv
+            │       Comparison-TEST-PRODWEBA-Differences.csv
+            │       Comparison-TEST-PRODWEBA-Uncompared.csv
             │   
-            └───BasinCharacteristics
-            │      BasinCharacteristicsOutput.csv
-            │      BasinCharacteristicsDifferences.csv
-            │      BasinCharacteristicsUncompared.csv
-            │      AK.txt
-            │      AL.txt
-            │      ...
-            │   
-            └───FlowStatistics
-                   AK.txt
-                   AL.txt
-                   ...
+            └───Comparison-TEST-PRODWEBB
+                    Comparison-TEST-PRODWEBA.csv
+                    Comparison-TEST-PRODWEBA-Differences.csv
+                    Comparison-TEST-PRODWEBA-Uncompared.csv
 ```
+
 Explanation of files in Testing-YYYY-MM-DD-HH-MM-SS folder:
 - ConsoleOutput.txt: copy of the console output
 - [server]/BasinDelineations/[region].txt: contains the full service response for basin delineation for that test site
