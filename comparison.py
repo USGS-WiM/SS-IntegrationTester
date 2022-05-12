@@ -32,11 +32,27 @@ if not os.path.exists(dateDirectory):
 fileName = os.path.join(dateDirectory, "ConsoleOutput.txt")
 consoleOutputFile = open(fileName, "w")
 
-# Create a summary file to summarize differences 
-fileName = os.path.join(dateDirectory, "DifferencesSummary.csv")
+# Create a summary file to show all comparisons
+fileName = os.path.join(dateDirectory, "Comparison.csv")
 comparisonSummaryFile = open(fileName, "w", newline='')
 comparisonSummaryFileWriter = csv.writer(comparisonSummaryFile)
-headerRow = ["Testing Session 1", "Testing Session 2", "Server", "Region", "SiteID", "Task", "Description", "Testing Session 1 Value", "Testing Session 2 Value"]
+headerRow = ["Testing Session 1", "Testing Session 2", "Server", "Region", "SiteID", "Task", "Description", "Testing Session 1 Value", "Testing Session 2 Value", "Testing Session 1 value equal to Testing Session 2 value?"]
+comparisonSummaryFileWriter.writerow(headerRow)
+comparisonSummaryFile.flush()
+
+# Create a summary file to show all differences
+fileName = os.path.join(dateDirectory, "ComparisonDifferences.csv")
+comparisonSummaryFile = open(fileName, "w", newline='')
+comparisonSummaryFileWriter = csv.writer(comparisonSummaryFile)
+headerRow = ["Testing Session 1", "Testing Session 2", "Server", "Region", "SiteID", "Task", "Description", "Testing Session 1 Value", "Testing Session 2 Value", "Testing Session 1 value equal to Testing Session 2 value?"]
+comparisonSummaryFileWriter.writerow(headerRow)
+comparisonSummaryFile.flush()
+
+# Create a summary file to show all uncompared values
+fileName = os.path.join(dateDirectory, "ComparisonUncompared.csv")
+comparisonSummaryFile = open(fileName, "w", newline='')
+comparisonSummaryFileWriter = csv.writer(comparisonSummaryFile)
+headerRow = ["Testing Session 1", "Testing Session 2", "Server", "Region", "SiteID", "Task", "Description", "Testing Session 1 Value", "Testing Session 2 Value", "Testing Session 1 value equal to Testing Session 2 value?"]
 comparisonSummaryFileWriter.writerow(headerRow)
 comparisonSummaryFile.flush()
 
@@ -54,4 +70,9 @@ printOut(testingSession2Path.name)
 
 servers = ["TEST", "PRODWEBA", "PRODWEBB"]
 
+for server in servers:
 
+    # Compare Basin Delineations
+    # Compare Basin Characteristics
+    # Compare Flow Statistics
+    printOut("hey")
