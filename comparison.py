@@ -96,9 +96,7 @@ for server in servers:
                 basinDelineationServer2File = open(basinDelineationServer2FileName, "r")
                 basinDelineationServer1Coordinates = json.load(basinDelineationServer1File)['featurecollection'][1]['feature']['features'][0]["geometry"]['coordinates']
                 basinDelineationServer2Coordinates = json.load(basinDelineationServer2File)['featurecollection'][1]['feature']['features'][0]["geometry"]['coordinates']
-                if basinDelineationServer1Coordinates == basinDelineationServer2Coordinates:
-                    printOut("Basin Delineations are equal.")
-                else:
+                if basinDelineationServer1Coordinates != basinDelineationServer2Coordinates:
                     printOut("Basin Delineations are not equal.")
                     dataRow = [folderName, testingSession1Name, testingSession2Name, server, file, "BasinDelineation", "", "See file", "See file", str(False)]
                     comparisonDifferencesFileWriter.writerow(dataRow)
@@ -130,13 +128,69 @@ for server in servers:
 
     # Compare Basin Characteristics
     printOut("BASIN CHARACTERISTICS:")
+    numberBasinCharacteristicsNotEqual = 0
+    filesBasinCharacteristics = []
+    basinCharacteristicsCodes = []
     testingSession1ServerBasinCharacteristicsDirectory = os.path.join(testingSession1ServerDirectory, "BasinCharacteristics")
     testingSession2ServerBasinCharacteristicsDirectory = os.path.join(testingSession2ServerDirectory, "BasinCharacteristics")
+    # Check the files from Testing Session 1
     for file in os.listdir(testingSession1ServerBasinCharacteristicsDirectory):
         if file.endswith(".txt"):
-            printOut("Comparing: " + file)
+            filesBasinCharacteristics.append(file)
+            print("Comparing: " + file)
+            basinCharacteristicsServer1FileName = os.path.join(testingSession1ServerBasinCharacteristicsDirectory, file)
+            basinCharacteristicsServer1File = open(basinCharacteristicsServer1FileName, "r")
+            try:
+                basinCharacteristicsServer2FileName = os.path.join(testingSession2ServerBasinCharacteristicsDirectory, file)
+                basinCharacteristicsServer2File = open(basinCharacteristicsServer2FileName, "r")
+                basinCharacteristicsServer1parameters = json.load(basinCharacteristicsServer1File)['parameters']
+                basinCharacteristicsServer2parameters = json.load(basinCharacteristicsServer2File)['parameters']
+                server1Dictionary = {}
+                for basinCharacteristicsServer1parameter in basinCharacteristicsServer1parameters:
+                    server1Dictionary[basinCharacteristicsServer1parameter['code']] = basinCharacteristicsServer1parameter['value']
+                for basinCharacteristicsServer2parameter in basinCharacteristicsServer2parameters:
+                    basinCharacteristicsCodes.append(basinCharacteristicsServer2parameter['code'])
+                    try:
+                        if server1Dictionary[basinCharacteristicsServer2parameter['code']] != basinCharacteristicsServer2parameter['value']:
+                            printOut("Basin Characteristic not equal: " + basinCharacteristicsServer2parameter['code'])
+                            printOut(testingSession1Name + " value = " + str(server1Dictionary[basinCharacteristicsServer2parameter['code']]))
+                            printOut(testingSession2Name + " value = " + str(basinCharacteristicsServer2parameter['value']))
+                            numberBasinCharacteristicsNotEqual+= 1
+                            dataRow = [folderName, testingSession1Name, testingSession2Name, server, file, "BasinCharacteristics", basinCharacteristicsServer2parameter['code'], str(server1Dictionary[basinCharacteristicsServer2parameter['code']]), str(basinCharacteristicsServer2parameter['value']), str(False)]
+                            comparisonDifferencesFileWriter.writerow(dataRow)
+                            comparisonDifferencesFile.flush()
+                        dataRow = [folderName, testingSession1Name, testingSession2Name, server, file, "BasinCharacteristics", basinCharacteristicsServer2parameter['code'], str(server1Dictionary[basinCharacteristicsServer2parameter['code']]), str(basinCharacteristicsServer2parameter['value']), str(server1Dictionary[basinCharacteristicsServer2parameter['code']] == basinCharacteristicsServer2parameter['value'])]
+                        comparisonSummaryFileWriter.writerow(dataRow)
+                        comparisonSummaryFile.flush()
+                    except:
+                        printOut("Basin Characteristic " + basinCharacteristicsServer2parameter['code'] + " available for only one testing session. Cannot compare.")
+                        dataRow = [folderName, testingSession1Name, testingSession2Name, server, file, "BasinCharacteristics", basinCharacteristicsServer2parameter['code'], "Value not found", str(basinCharacteristicsServer2parameter['value']), str(False)]
+                        comparisonUncomparedFileWriter.writerow(dataRow)
+                        comparisonUncomparedFile.flush()
+            except FileNotFoundError: 
+                printOut("Basin Characteristics available for only one testing session. Cannot compare.")
+                dataRow = [folderName, testingSession1Name, testingSession2Name, server, file, "BasinCharacteristics", "", "See file", "File not found", str(False)]
+                comparisonUncomparedFileWriter.writerow(dataRow)
+                comparisonUncomparedFile.flush()
         else:
             continue
+        
+    # Check the files from Testing Session 2 that were not in Testing Session 1
+    for file in os.listdir(testingSession2ServerBasinCharacteristicsDirectory):
+        if file.endswith(".txt"):
+            print("Comparing: " + file)
+            if file not in filesBasinCharacteristics:
+                printOut("Basin Characteristics available for only one testing session. Cannot compare.")
+                dataRow = [folderName, testingSession1Name, testingSession2Name, server, file, "BasinCharacteristics", "", "File not round", "See file", str(False)]
+                comparisonUncomparedFileWriter.writerow(dataRow)
+                comparisonUncomparedFile.flush()
+            else:
+                # compare the BCs
+                print("hey")
+        else:
+            continue
+
+# print the number BCs not equal
 
     # Compare Flow Statistics
     printOut("FLOW STATISTICS:")
