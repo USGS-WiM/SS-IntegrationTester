@@ -91,25 +91,38 @@ SS-IntegrationTester
         │          ...
         │   
         └───PRODWEBB
+        │   │   
+        │   └───BasinDelineations
+        │   │      AK.txt
+        │   │      AL.txt
+        │   │      ...
+        │   │   
+        │   └───BasinCharacteristics
+        │   │      BasinCharacteristicsOutput.csv
+        │   │      BasinCharacteristicsDifferences.csv
+        │   │      BasinCharacteristicsUncompared.csv
+        │   │      AK.txt
+        │   │      AL.txt
+        │   │      ...
+        │   │   
+        │   └───FlowStatistics
+        │          AK.txt
+        │          AL.txt
+        │          ...
+        └───Comparison
+            │   DifferencesSummary.csv
             │   
-            └───BasinDelineations
-            │      AK.txt
-            │      AL.txt
-            │      ...
+            └───Comparison-TEST-PRODWEBA
+            │       Comparison-TEST-PRODWEBA.csv
+            │       Comparison-TEST-PRODWEBA-Differences.csv
+            │       Comparison-TEST-PRODWEBA-Uncompared.csv
             │   
-            └───BasinCharacteristics
-            │      BasinCharacteristicsOutput.csv
-            │      BasinCharacteristicsDifferences.csv
-            │      BasinCharacteristicsUncompared.csv
-            │      AK.txt
-            │      AL.txt
-            │      ...
-            │   
-            └───FlowStatistics
-                   AK.txt
-                   AL.txt
-                   ...
+            └───Comparison-TEST-PRODWEBB
+                    Comparison-TEST-PRODWEBA.csv
+                    Comparison-TEST-PRODWEBA-Differences.csv
+                    Comparison-TEST-PRODWEBA-Uncompared.csv
 ```
+
 Explanation of files in Testing-YYYY-MM-DD-HH-MM-SS folder:
 - ConsoleOutput.txt: copy of the console output
 - [server]/BasinDelineations/[region].txt: contains the full service response for basin delineation for that test site
@@ -118,6 +131,10 @@ Explanation of files in Testing-YYYY-MM-DD-HH-MM-SS folder:
 - [server]/BasinCharacteristics/BasinCharacteristicsOutput.csv: contains basin characteristics (computed and known values) for all test sites
 - [server]/BasinCharacteristics/BasinCharacteristicsDifferences.csv: contains computed basin characteristics that were not equal to known values
 - [server]/BasinCharacteristics/BasinCharacteristicsUncompared.csv: contains computed basin characteristics that were not compared to known values because a known value was not available
+- Comparison/DifferencesSummary.csv: contains the differences discovered when comparing TestWeb to ProdWebA and Test to ProdWebB
+- Comparison/Comparison-TEST-[server]/Comparison-TEST-[server].csv: contains all compared values for basin delineation, basin characteristics, and flow statistics between TestWeb and ProdWebA or ProdWebB
+- Comparison/Comparison-TEST-[server]/Comparison-TEST-[server]-Differences.csv: contains all values for basin delineation, basin characteristics, and flow statistics that were different between TestWeb and ProdWebA or ProdWebB
+- Comparison/Comparison-TEST-[server]/Comparison-TEST-[server]-Uncompared.csv: contains all values for basin delineation, basin characteristics, and flow statistics that were not able to be compared between TestWeb and ProdWebA or ProdWebB due to lack of data in one server
 
 ## Development Workflow
 

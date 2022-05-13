@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Calculate flow statistics
 - Save time elapsed to CSV file
 - Check if each server is online before running tests
+- Compare Test to ProdWebA and ProdWebB
 
 ### Changed
 
