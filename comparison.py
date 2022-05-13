@@ -124,8 +124,6 @@ for server in servers:
             continue
 
 
-
-
     # Compare Basin Characteristics
     printOut("BASIN CHARACTERISTICS:")
     numberBasinCharacteristicsNotEqual = 0
@@ -133,7 +131,7 @@ for server in servers:
     basinCharacteristicsCodes = []
     testingSession1ServerBasinCharacteristicsDirectory = os.path.join(testingSession1ServerDirectory, "BasinCharacteristics")
     testingSession2ServerBasinCharacteristicsDirectory = os.path.join(testingSession2ServerDirectory, "BasinCharacteristics")
-    # Check the files from Testing Session 1
+    # Check the parameters from Testing Session 2
     for file in os.listdir(testingSession1ServerBasinCharacteristicsDirectory):
         if file.endswith(".txt"):
             filesBasinCharacteristics.append(file)
@@ -174,8 +172,8 @@ for server in servers:
                 comparisonUncomparedFile.flush()
         else:
             continue
-        
-    # Check the files from Testing Session 2 that were not in Testing Session 1
+
+    # Check the files from Testing Session 1 that were not in Testing Session 2
     for file in os.listdir(testingSession2ServerBasinCharacteristicsDirectory):
         if file.endswith(".txt"):
             print("Comparing: " + file)
@@ -185,12 +183,25 @@ for server in servers:
                 comparisonUncomparedFileWriter.writerow(dataRow)
                 comparisonUncomparedFile.flush()
             else:
-                # compare the BCs
-                print("hey")
+                basinCharacteristicsServer2FileName = os.path.join(testingSession2ServerBasinCharacteristicsDirectory, file)
+                basinCharacteristicsServer2File = open(basinCharacteristicsServer2FileName, "r")
+                basinCharacteristicsServer1FileName = os.path.join(testingSession1ServerBasinCharacteristicsDirectory, file)
+                basinCharacteristicsServer1File = open(basinCharacteristicsServer1FileName, "r")
+                basinCharacteristicsServer2parameters = json.load(basinCharacteristicsServer2File)['parameters']
+                basinCharacteristicsServer1parameters = json.load(basinCharacteristicsServer1File)['parameters']
+                server2Dictionary = {}
+                for basinCharacteristicsServer2parameter in basinCharacteristicsServer2parameters:
+                    server2Dictionary[basinCharacteristicsServer2parameter['code']] = basinCharacteristicsServer2parameter['value']
+                for basinCharacteristicsServer1parameter in basinCharacteristicsServer1parameters:
+                    if basinCharacteristicsServer1parameter['code'] not in basinCharacteristicsCodes:
+                        printOut("Basin Characteristic " + basinCharacteristicsServer1parameter['code'] + " available for only one testing session. Cannot compare.")
+                        dataRow = [folderName, testingSession1Name, testingSession2Name, server, file, "BasinCharacteristics", basinCharacteristicsServer1parameter['code'], "Value not found", str(basinCharacteristicsServer1parameter['value']), str(False)]
+                        comparisonUncomparedFileWriter.writerow(dataRow)
+                        comparisonUncomparedFile.flush()
         else:
             continue
-
-# print the number BCs not equal
+    if numberBasinCharacteristicsNotEqual > 0:
+        printOut("Number of Basin Characteristics not equal between testing sessions: " + str(numberBasinCharacteristicsNotEqual))
 
     # Compare Flow Statistics
     printOut("FLOW STATISTICS:")
