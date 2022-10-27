@@ -426,20 +426,6 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -71.829407,
-                    41.341142
-                ]
-            },
-            "properties": {
-                "siteid": "globalRI",
-                "state": "RI"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
                     -81.196056,
                     34.185745
                 ]
