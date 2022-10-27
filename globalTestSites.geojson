@@ -1,0 +1,551 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -85.561043,
+                    33.11668
+                ]
+            },
+            "properties": {
+                "siteid": "globalAL",
+                "state": "AL"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -150.517408,
+                    61.546454
+                ]
+            },
+            "properties": {
+                "siteid": "globalAK",
+                "state": "AK"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -113.92436,
+                    36.891432
+                ]
+            },
+            "properties": {
+                "siteid": "globalAZ",
+                "state": "AZ"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -92.026465,
+                    33.700799
+                ]
+            },
+            "properties": {
+                "siteid": "global",
+                "state": "AR"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -114.777109,
+                    32.634617
+                ]
+            },
+            "properties": {
+                "siteid": "globalCA",
+                "state": "CA"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -102.484082,
+                    38.114191
+                ]
+            },
+            "properties": {
+                "siteid": "globalCO",
+                "state": "CO"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -72.067425,
+                    41.525216
+                ]
+            },
+            "properties": {
+                "siteid": "globalCT",
+                "state": "CT"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.26828,
+                    38.585793
+                ]
+            },
+            "properties": {
+                "siteid": "globalDE",
+                "state": "DE"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -81.115294,
+                    31.856915
+                ]
+            },
+            "properties": {
+                "siteid": "globalGA",
+                "state": "GA"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -115.990679,
+                    46.160632
+                ]
+            },
+            "properties": {
+                "siteid": "globalID",
+                "state": "ID"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -88.156374,
+                    38.092532
+                ]
+            },
+            "properties": {
+                "siteid": "globalIL",
+                "state": "IL"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -86.721259,
+                    39.327476
+                ]
+            },
+            "properties": {
+                "siteid": "globalIN",
+                "state": "IN"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -91.204366,
+                    40.719445
+                ]
+            },
+            "properties": {
+                "siteid": "globalIA",
+                "state": "IA"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -83.694944,
+                    37.581759
+                ]
+            },
+            "properties": {
+                "siteid": "globalKY",
+                "state": "KY"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -69.591693,
+                    44.596016
+                ]
+            },
+            "properties": {
+                "siteid": "globalME",
+                "state": "ME"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.295934,
+                    42.645373
+                ]
+            },
+            "properties": {
+                "siteid": "globalMA",
+                "state": "MA"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.649777,
+                    37.964807
+                ]
+            },
+            "properties": {
+                "siteid": "globalMD",
+                "state": "MD"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -92.333855,
+                    46.653991
+                ]
+            },
+            "properties": {
+                "siteid": "globalMN",
+                "state": "MN"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -88.810201,
+                    32.153456
+                ]
+            },
+            "properties": {
+                "siteid": "globalMS",
+                "state": "MS"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -108.687,
+                    47.6315
+                ]
+            },
+            "properties": {
+                "siteid": "globalMT",
+                "state": "MT"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.342776,
+                    35.324132
+                ]
+            },
+            "properties": {
+                "siteid": "globalNC",
+                "state": "NC"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -100.617026,
+                    46.418391
+                ]
+            },
+            "properties": {
+                "siteid": "globalND",
+                "state": "ND"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.649834,
+                    43.380793
+                ]
+            },
+            "properties": {
+                "siteid": "globalNH",
+                "state": "NH"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.660697,
+                    39.319832
+                ]
+            },
+            "properties": {
+                "siteid": "globalNJ",
+                "state": "NJ"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -103.440647,
+                    35.227076
+                ]
+            },
+            "properties": {
+                "siteid": "globalNM",
+                "state": "NM"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.265352,
+                    42.953699
+                ]
+            },
+            "properties": {
+                "siteid": "globalNY",
+                "state": "NY"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -82.056951,
+                    40.334585
+                ]
+            },
+            "properties": {
+                "siteid": "globalOH",
+                "state": "OH"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -97.310573,
+                    36.671356
+                ]
+            },
+            "properties": {
+                "siteid": "globalOK",
+                "state": "OK"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -118.54797,
+                    42.013885
+                ]
+            },
+            "properties": {
+                "siteid": "globalOR",
+                "state": "OR"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.017461,
+                    40.376372
+                ]
+            },
+            "properties": {
+                "siteid": "globalPA",
+                "state": "PA"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.829407,
+                    41.341142
+                ]
+            },
+            "properties": {
+                "siteid": "globalRI",
+                "state": "RI"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -81.196056,
+                    34.185745
+                ]
+            },
+            "properties": {
+                "siteid": "globalSC",
+                "state": "SC"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -96.690018,
+                    44.15713
+                ]
+            },
+            "properties": {
+                "siteid": "globalSD",
+                "state": "SD"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -88.976523,
+                    35.275356
+                ]
+            },
+            "properties": {
+                "siteid": "globalTN",
+                "state": "TN"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -109.132799,
+                    37.161885
+                ]
+            },
+            "properties": {
+                "siteid": "globalUT",
+                "state": "UT"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -80.86142,
+                    37.37198
+                ]
+            },
+            "properties": {
+                "siteid": "globalVA",
+                "state": "VA"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -72.486822,
+                    42.970681
+                ]
+            },
+            "properties": {
+                "siteid": "globalVT",
+                "state": "VT"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -91.428608,
+                    40.372009
+                ]
+            },
+            "properties": {
+                "siteid": "globalWI",
+                "state": "WI"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.227523,
+                    46.03785
+                ]
+            },
+            "properties": {
+                "siteid": "globalWA",
+                "state": "WA"
+            }
+        }
+    ]
+}
